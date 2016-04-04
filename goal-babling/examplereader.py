@@ -1,0 +1,66 @@
+import yarp;
+class ExampleReader:
+    def __init__(self):
+        self.in_port = yarp.BufferedPortBottle()
+        self.in_port.open("/example/input:i")
+
+	#ports I use for testing uncomment line that you want to try
+        yarp.Network.connect("/icubSim/skinManager/skin_events:o", "/example/input:i")
+	#yarp.Network.connect("/icubSim/left_arm/state:o", "/example/input:i") #there must be skin contact active in simulator otherwise no data
+	#yarp.Network.connect("/pokus", "/example/input:i") #i created port /pokus via "yarp write /pokus"
+
+        return
+
+    def getData(self):
+        #in this example, I assume the data is a single integer
+        #we use read() where the parameter determines if it is 
+        #blocking (True) or not.
+	
+        btl = self.in_port.read(True)
+	
+	my_data = btl.toString()
+	cis = ""
+	if "(0 1 2 3 4 5 6 7 8 9 10 11)" in dat:
+		# zapestie
+		if " 121 " in my_data:
+			cis += "01 "
+		if " 102 " in my_data:
+			cis += "02 "
+		if " 97 " in my_data:
+			cis += "03 "
+		if " 109 " in my_data:
+			cis += "04 "
+		if " 133 " in my_data:
+			cis += "05 "
+		cisla = ""
+		# vrchna cast predlaktia
+		if " 299 300 " in my_data:
+			cisla += "11 "
+		if " 215 336 " in my_data:
+			cisla += "12 "
+		if " 263 312 " in my_data:
+			cisla += "13 "
+
+		#spodna cast predlaktia
+		if " 143 168 " in my_data:
+			cisla += "21 "
+		if " 167 144 " in my_data:
+			cisla += "22 "
+		if " 35 12 " in my_data:
+			cisla += "23 "
+		if " 11 180 " in my_data:
+			cisla += "24 "
+		if " 131 60 " in my_data:
+			cisla += "25 "
+		if " 107 108 " in my_data:
+			cisla += "26 "
+		if " 95 72 " in my_data:
+			cisla += "27 "
+		if " 47 48 " in my_data:
+			cisla += "28 "
+	
+		if cisla != "":
+			return cisla
+		else:
+			return cis
+
