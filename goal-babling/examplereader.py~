@@ -20,7 +20,7 @@ class ExampleReader:
 	
 	my_data = btl.toString()
 	cis = ""
-	if "(0 1 2 3 4 5 6 7 8 9 10 11)" in my_data:
+	if "(0 1 2 3 4 5 6 7 8 9 10 11)" in dat:
 		# zapestie
 		if " 121 " in my_data:
 			cis += "01 "
