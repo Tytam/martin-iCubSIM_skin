@@ -2,7 +2,7 @@ import copy
 import pprint
 import time
 import random
-from examplereader import ExampleReader
+from armreader import armReader
 from left_arm_init import left_arm_init
 import yarp;
 yarp.Network.init();
@@ -19,18 +19,18 @@ class senso_motor_pair:
 	
 	def write(self):
 		print self.skin_cube_ID
-		for x in range(0,6):
+		for x in range(0,7):
 			print self.joints[x]
 		return
 
 	def writefile(self):
 		vysledok  = str(self.skin_cube_ID)
-		for x in range(0,6):
+		for x in range(0,7):
 			vysledok += ' '
 			vysledok +=  str(self.joints[x])
 		return vysledok
 	
-citac = ExampleReader()
+citac = armReader()
 #print citac.getData()
 
 model = []
@@ -69,10 +69,10 @@ tmp=yarp.Vector(jnts)
 for x in range(0, 4):
     print tmp.get(x)
 # add 10 degrees to the first four joints
-tmp.set(0, -30)
-tmp.set(1, 10)
-tmp.set(2, 40)
-tmp.set(3, 50)
+tmp.set(0, -50)
+tmp.set(1, 40)
+tmp.set(2, 50)
+tmp.set(3, 70)
 tmp.set(4, 0)
 tmp.set(5, 0)
 tmp.set(6, 0)
@@ -117,8 +117,13 @@ iPos.positionMove(tmp.data())
 print "posunute"
 
 joint_setting= [-30, 15, 40, 70, 20, 0, 0]
-for x in range(0, 1500):
-	r = random.uniform(-92, -50)
+zname = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+semafor = True
+x = 0
+while semafor:
+	print zname
+	x += 1
+	r = random.uniform(-92, -30)
 	tmp.set(0, r)
 	joint_setting[0] = r
 	r = random.uniform(0, 28)
@@ -133,7 +138,7 @@ for x in range(0, 1500):
 	r = random.uniform(-90, 90)
 	joint_setting[4] = r
 	tmp.set(4, r)    
-	r = random.uniform(-50, 0)
+	r = random.uniform(-30, 0)
 	joint_setting[5] = r
 	tmp.set(5, r) 
 	r = random.uniform(-19, 39)
@@ -146,8 +151,49 @@ for x in range(0, 1500):
 	print dat 
 	if dat != "":
 		model.append(senso_motor_pair(dat, joint_setting))	
-	
-	print "zobudeny"
+		d = dat.split()
+		for item in d:
+    			if item == "011":
+				zname[0] = 1
+			elif item == "012":
+				zname[1] = 1
+			elif item == "013":
+				zname[2] = 1
+			elif item == "021":
+				zname[3] = 1
+			elif item == "022":
+				zname[4] = 1
+			elif item == "023":
+				zname[5] = 1
+			elif item == "024":
+				zname[6] = 1
+			elif item == "025":
+				zname[7] = 1
+			elif item == "026":
+				zname[8] = 1
+			elif item == "027":
+				zname[9] = 1
+			elif item == "028":
+				zname[10] = 1
+			elif item == "005":
+				zname[11] = 1
+			elif item == "006":
+				zname[12] = 1
+			elif item == "007":
+				zname[13] = 1
+			elif item == "008":
+				zname[14] = 1
+			elif item == "009":
+				zname[15] = 1
+
+		suma = 0
+		for j in range(0, 16):
+			suma += zname[j]
+		if suma > 11:
+			semafor = False
+
+	iPos.positionMove(hom.data())
+	time.sleep(2)
 	print x
 
 f = open('workfile', 'w')
@@ -165,6 +211,7 @@ while i < len(model):
 	i += 1
 
 f.close()
+print x
 	
 
 	

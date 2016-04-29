@@ -143,7 +143,7 @@ tmp.set(14, 154)
 tmp.set(15, 167)
 
 hom=yarp.Vector(jnts)
-hom.set(0, -90)
+hom.set(0, -45) #-90
 hom.set(1, 30)
 hom.set(2, 40)
 hom.set(3, 70)
@@ -151,9 +151,9 @@ hom.set(4, 20)
 hom.set(5, 0)
 hom.set(6, 0)
 hom.set(7, 59)
-hom.set(8, 20)
-hom.set(9, 20)
-hom.set(10, 20)
+hom.set(8, 10)
+hom.set(9, 74)
+hom.set(10, 0)
 hom.set(11, 10)
 hom.set(12, 10)
 hom.set(13, 58)
@@ -178,7 +178,9 @@ semafor = True
 x = 0
 while semafor:
 	x += 1
-	r = random.uniform(-83, -85)
+#zapestie
+########################################x
+	"""r = random.uniform(-78, -79)
 	tmp.set(0, r)
 	joint_setting[0] = r
 	r = random.uniform(0, 1)
@@ -190,7 +192,7 @@ while semafor:
 	r = random.uniform(29, 30)
 	joint_setting[3] = r
 	tmp.set(3, r) 
-	r = random.uniform(34, 35)
+	r = random.uniform(55, 56)
 	joint_setting[4] = r
 	tmp.set(4, r)    
 	r = random.uniform(-31, -32) #(-50, 0)
@@ -199,6 +201,55 @@ while semafor:
 	r = random.uniform(7, 8)
 	joint_setting[6] = r
 	tmp.set(6, r) 
+	"""
+#predlaktie
+##################################################x
+	"""r = random.uniform(-71, -72)
+	tmp.set(0, r)
+	joint_setting[0] = r
+	r = random.uniform(20, 21)
+	tmp.set(1, r)
+	joint_setting[1] = r
+	r = random.uniform(79, 80)
+	joint_setting[2] = r
+	tmp.set(2, r)
+	r = random.uniform(80, 81)
+	joint_setting[3] = r
+	tmp.set(3, r) 
+	r = random.uniform(19, 20)
+	joint_setting[4] = r
+	tmp.set(4, r)    
+	r = random.uniform(0, -1) #(-50, 0)
+	joint_setting[5] = r
+	tmp.set(5, r) 
+	r = random.uniform(-1, 1)
+	joint_setting[6] = r
+	tmp.set(6, r) 
+	"""
+#predlaktie 2
+##################################################x
+	r = random.uniform(-70, -71)
+	tmp.set(0, r)
+	joint_setting[0] = r
+	r = random.uniform(6, 7)
+	tmp.set(1, r)
+	joint_setting[1] = r
+	r = random.uniform(65, 66)
+	joint_setting[2] = r
+	tmp.set(2, r)
+	r = random.uniform(50, 51)
+	joint_setting[3] = r
+	tmp.set(3, r) 
+	r = random.uniform(23, 24)
+	joint_setting[4] = r
+	tmp.set(4, r)    
+	r = random.uniform(0, -1) #(-50, 0)
+	joint_setting[5] = r
+	tmp.set(5, r) 
+	r = random.uniform(3, 3)
+	joint_setting[6] = r
+	tmp.set(6, r) 
+###################################################
 	iPos.positionMove(tmp.data())
 	#print "zaspal"
 	time.sleep(3)
@@ -284,8 +335,9 @@ while semafor:
 	
 	a = int(random.uniform(0, len(kamarati))) 
 	item = kamarati[a]
-		
-			
+	print item	
+	
+	"""		
 	r = random.uniform(float(item[0]) + 1, float(item[0]) - 1)
 	tmp.set(0, r)
 	joint_setting[0] = r
@@ -313,9 +365,41 @@ while semafor:
 	
 	r = random.uniform(float(item[6]) + 7, float(item[6]) - 7)
 	joint_setting[6] = r
+	"""
+#################################################
+
+	u = 6;
+	r = random.uniform(float(item[0]) + u, float(item[0]) - u)
+	tmp.set(0, r)
+	joint_setting[0] = r
+				
+
+	r = random.uniform(float(item[1]) + u, float(item[1]) - u)
+	tmp.set(1, r)
+	joint_setting[1] = r
+	
+	r = random.uniform(float(item[2]) + u, float(item[2]) - u)
+	joint_setting[2] = r
+	tmp.set(2, r)
+	
+	r = random.uniform(float(item[3]) + u, float(item[3]) - u)
+	joint_setting[3] = r
+	tmp.set(3, r)
+	 
+	r = random.uniform(float(item[4]) + u, float(item[4]) - u)
+	joint_setting[4] = r
+	tmp.set(4, r) 
+	   
+	r = random.uniform(float(item[5]) + u, float(item[5]) - u)
+	joint_setting[5] = r
+	tmp.set(5, r)
+	
+	r = random.uniform(float(item[6]) + u, float(item[6]) - u)
+	joint_setting[6] = r
+###########################################################
 	tmp.set(6, r) 
 	iPos.positionMove(tmp.data())
-	print "hladame"
+	print joint_setting
 	time.sleep(3)
 	dat = citac.getData()
 	print dat
@@ -365,7 +449,7 @@ while semafor:
 	suma = 0
 	for j in range(0, 16):
 		suma += zname[j]
-	if suma > 7:
+	if suma > 11:
 		semafor = False
 	
 
@@ -397,6 +481,7 @@ while i < len(model):
 
 f.close()
 	
-
+print x
+print zname
 	
 

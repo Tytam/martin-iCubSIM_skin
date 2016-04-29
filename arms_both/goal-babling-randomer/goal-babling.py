@@ -240,7 +240,8 @@ semafor = True
 x = 0
 while semafor:
 	x += 1
-	# right arm
+################################################
+	# right arm 
 	r = random.uniform(-90, 0)
 	joint_setting[0] = r
 	tmp.set(0, r)
@@ -355,6 +356,7 @@ while semafor:
 zaciatok = x
 semafor = True
 kontrola = 0
+suma2 = 0
 while semafor:
 	kontrola += 1
 	x += 1
@@ -382,8 +384,9 @@ while semafor:
 	
 	a = int(random.uniform(0, len(kamarati))) 
 	item = kamarati[a]
-		
-	# right arm		
+###################################################################x		
+	# right arm
+	"""	
 	r = random.uniform(float(item[0]) + 1, float(item[0]) - 1)
 	tmp.set(0, r)
 	joint_setting[0] = r
@@ -412,33 +415,64 @@ while semafor:
 	r = random.uniform(float(item[6]) + 7, float(item[6]) - 7)
 	joint_setting[6] = r
 	tmp.set(6, r)
+"""
+#####################################################################
+	u = 4;
+	r = random.uniform(float(item[0]) + u, float(item[0]) - u)
+	tmp.set(0, r)
+	joint_setting[0] = r
+				
 
+	r = random.uniform(float(item[1]) + u, float(item[1]) - u)
+	tmp.set(1, r)
+	joint_setting[1] = r
+	
+	r = random.uniform(float(item[2]) + u, float(item[2]) - u)
+	joint_setting[2] = r
+	tmp.set(2, r)
+	
+	r = random.uniform(float(item[3]) + u, float(item[3]) - u)
+	joint_setting[3] = r
+	tmp.set(3, r)
+	 
+	r = random.uniform(float(item[4]) + u, float(item[4]) - u)
+	joint_setting[4] = r
+	tmp.set(4, r) 
+	   
+	r = random.uniform(float(item[5]) + u, float(item[5]) - u)
+	joint_setting[5] = r
+	tmp.set(5, r)
+	
+	r = random.uniform(float(item[6]) + u, float(item[6]) - u)
+	joint_setting[6] = r
+##################################################################x
 	# left arm
-	r = random.uniform(float(item[7]) + 1, float(item[7]) - 1)
+	v = 2;
+	r = random.uniform(float(item[7]) + v, float(item[7]) - v)
 	joint_setting[7] = r
 	tmp2.set(0, r)	
 
-	r = random.uniform(float(item[8]) + 1, float(item[8]) - 1)
+	r = random.uniform(float(item[8]) + v, float(item[8]) - v)
 	joint_setting[8] = r
 	tmp2.set(1, r)
 		
-	r = random.uniform(float(item[9]) + 1, float(item[9]) - 1)
+	r = random.uniform(float(item[9]) + v, float(item[9]) - v)
 	joint_setting[9] = r
 	tmp2.set(2, r)
 	
-	r = random.uniform(float(item[10]) + 1, float(item[10]) - 1)
+	r = random.uniform(float(item[10]) + v, float(item[10]) - v)
 	joint_setting[10] = r
 	tmp2.set(3, r)
 	 
-	r = random.uniform(float(item[11]) + 1, float(item[11]) - 1)
+	r = random.uniform(float(item[11]) + v, float(item[11]) - v)
 	joint_setting[11] = r
 	tmp2.set(4, r) 
 	   
-	r = random.uniform(float(item[12]) + 1, float(item[12]) - 1)
+	r = random.uniform(float(item[12]) + v, float(item[12]) - v)
 	joint_setting[12] = r
 	tmp2.set(5, r)
 	
-	r = random.uniform(float(item[13]) + 1, float(item[13]) - 1)
+	r = random.uniform(float(item[13]) + v, float(item[13]) - v)
 	joint_setting[13] = r
 	tmp2.set(6, r)
 	
@@ -454,9 +488,12 @@ while semafor:
 	print dat
 	#dat = str(dat)  
 	if dat != "":
-		kontorola = 0
+		suma2 = 0
+		for j in range(0, 16):
+			suma2 += zname[j]
+		
 		nastavenie = rightcitac.getData();
-		for a in (0,7):
+		for a in range(0,7):
 			joint_setting[a] = float(nastavenie[a]) 
 		model.append(senso_motor_pair(dat, joint_setting))
 		d = dat.split()
@@ -505,9 +542,12 @@ while semafor:
 		suma += zname[j]
 	if suma > 15:
 		semafor = False
+	
+	if suma > suma2:
+		kontorla = 0
 
 	#hladame blbo
-	if kontrola == 10:
+	if kontrola == 100:
 		semafor = False
 		print "hladali sme zle"
 	
@@ -539,6 +579,9 @@ while i < len(model):
 	i += 1
 
 f.close()
+
+print x
+print zname
 	
 
 	

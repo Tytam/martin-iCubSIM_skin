@@ -20,10 +20,10 @@ class left_arm_init:
 		return
 
 	def set(self):
-		self.tmp.set(0, -85.0)
-		self.tmp.set(1, 23.0)
-		self.tmp.set(2, -12.0)
-		self.tmp.set(3, 20.0)
+		self.tmp.set(0, -65.0)
+		self.tmp.set(1, 17.0)
+		self.tmp.set(2, -10.0)
+		self.tmp.set(3, 42.0)
 		self.tmp.set(4, 20)
 		self.tmp.set(5, 0)
 		self.tmp.set(6, 0)
