@@ -4,16 +4,10 @@ class armReader:
     def __init__(self):
         self.in_port = yarp.BufferedPortBottle()
         self.in_port.open("/example/input:i")
-
-	#ports I use for testing uncomment line that you want to try
         yarp.Network.connect("/icubSim/skinManager/skin_events:o", "/example/input:i")
-	#yarp.Network.connect("/icubSim/left_arm/state:o", "/example/input:i") #there must be skin contact active in simulator otherwise no data
-	#yarp.Network.connect("/pokus", "/example/input:i") #i created port /pokus via "yarp write /pokus"
-
         return
 
     def getData(self):
-        #in this example, I assume the data is a single integer
         #we use read() where the parameter determines if it is 
         #blocking (True) or not.
 	
@@ -29,7 +23,6 @@ class armReader:
 			if " 6 4)" in dat:
 				if " 11) " in dat:
 					ok = True
-	#if "(0 1 2 3 4 5 6 7 8 9 10 11)" in my_data:
 	if ok:
 		for dat in mydata:
 			#print dat

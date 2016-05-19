@@ -299,7 +299,7 @@ while semafor:
 	if dat != "":
 		print joint_setting
 		nastavenie = rightcitac.getData();
-		for a in (0,7):
+		for a in range(0,7):
 			joint_setting[a] = float(nastavenie[a])
 		print joint_setting
 		model.append(senso_motor_pair(dat, joint_setting))
@@ -417,7 +417,7 @@ while semafor:
 	tmp.set(6, r)
 """
 #####################################################################
-	u = 4;
+	u = 10;
 	r = random.uniform(float(item[0]) + u, float(item[0]) - u)
 	tmp.set(0, r)
 	joint_setting[0] = r
@@ -447,7 +447,8 @@ while semafor:
 	joint_setting[6] = r
 ##################################################################x
 	# left arm
-	v = 2;
+	v = 1
+	rot = 20
 	r = random.uniform(float(item[7]) + v, float(item[7]) - v)
 	joint_setting[7] = r
 	tmp2.set(0, r)	
@@ -464,7 +465,7 @@ while semafor:
 	joint_setting[10] = r
 	tmp2.set(3, r)
 	 
-	r = random.uniform(float(item[11]) + v, float(item[11]) - v)
+	r = random.uniform(float(item[11]) + rot, float(item[11]) - rot)
 	joint_setting[11] = r
 	tmp2.set(4, r) 
 	   
@@ -547,7 +548,7 @@ while semafor:
 		kontorla = 0
 
 	#hladame blbo
-	if kontrola == 100:
+	if kontrola == 200:
 		semafor = False
 		print "hladali sme zle"
 	

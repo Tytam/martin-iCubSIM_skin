@@ -4,16 +4,10 @@ class armReader:
     def __init__(self):
         self.in_port = yarp.BufferedPortBottle()
         self.in_port.open("/example/input:i")
-
-	#ports I use for testing uncomment line that you want to try
         yarp.Network.connect("/icubSim/skinManager/skin_events:o", "/example/input:i")
-	#yarp.Network.connect("/icubSim/left_arm/state:o", "/example/input:i") #there must be skin contact active in simulator otherwise no data
-	#yarp.Network.connect("/pokus", "/example/input:i") #i created port /pokus via "yarp write /pokus"
-
         return
 
     def getData(self):
-        #in this example, I assume the data is a single integer
         #we use read() where the parameter determines if it is 
         #blocking (True) or not.
 	
@@ -23,13 +17,23 @@ class armReader:
 	mydata = my_data.split('((')
 
 	cis = ""
-	if "(0 1 2 3 4 5 6 7 8 9 10 11)" in my_data:
+	ok = False
+	for dat in mydata:
+		if len(dat) > 10:
+			if " 6 4)" in dat:
+				if " 11) " in dat:
+					ok = True
+	if ok:
 		for dat in mydata:
 			#print dat
 			#print "printol som"
 			if len(dat) > 10:
 				#left hand
-				if dat[10] == "1" or dat[11] == "1":
+				#print dat
+				#print dat[10]
+				#print dat[11] 
+				if " 6 1)" in dat:
+					print dat
 					#print "lava"
 					#prsty
 					if " (48 " in dat:
@@ -43,7 +47,7 @@ class armReader:
 					if " (36 " in dat:
 						cis += "004 "
 					# dlan
-					if " 121 " in dat:
+					if " 122 " in dat:
 						cis += "005 "
 					if " 102 " in dat:
 						cis += "006 "
@@ -54,7 +58,7 @@ class armReader:
 					if " 133 " in dat:
 						cis += "009 "
 				#left forarm
-				if dat[10] == "2" or dat[11] == "2":
+				if " 4 2)" in dat:
 					#print "lava"
 					# vrchna cast predlaktia
 					if " 299 300 " in dat:
@@ -82,7 +86,7 @@ class armReader:
 					if " 47 48 " in dat:
 						cis += "028 "
 				#right hand
-				if dat[10] == "4" or dat[11] == "4":
+				if " 6 4)" in dat:
 					#prsty
 					if " (48 " in dat:
 						cis += "100 "
@@ -95,7 +99,7 @@ class armReader:
 					if " (36 " in dat:
 						cis += "104 "
 					# dlan
-					if " 121 " in dat:
+					if " 122 " in dat:
 						cis += "105 "
 					if " 102 " in dat:
 						cis += "106 "
@@ -106,7 +110,7 @@ class armReader:
 					if " 133 " in dat:
 						cis += "109 "
 				#right forarm
-				if dat[10] == "5" or dat[11] == "5":
+				if " 4 5)" in dat:
 					# vrchna cast predlaktia
 					if " 299 300 " in dat:
 						cis += "111 "

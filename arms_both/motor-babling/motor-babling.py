@@ -299,7 +299,7 @@ while semafor:
 	if dat != "":
 		print joint_setting
 		nastavenie = rightcitac.getData();
-		for a in (0,7):
+		for a in range(0,7):
 			joint_setting[a] = float(nastavenie[a])
 		print joint_setting
 		model.append(senso_motor_pair(dat, joint_setting))

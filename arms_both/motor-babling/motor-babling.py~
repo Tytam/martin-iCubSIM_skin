@@ -354,7 +354,7 @@ while semafor:
 	iPos2.positionMove(hom2.data())
 	time.sleep(2)
 	print x
-	print zname;
+	print zname
 
 ################################################################################
 f = open('workfile', 'w')
