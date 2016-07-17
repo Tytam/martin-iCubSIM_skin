@@ -1,0 +1,27 @@
+The goal of this part as to group taxels to small groups.
+Before our emlation there was only one group for whole forarm. We divided each forarm
+into 11 groups.
+
+The code is written in matlab and can be found in matlab_left_forarm directory:
+"skinTesselation3D_left_forearm." Everything is 3D point (x,y,z) or 3D line (x,y,z,x2,y2,z2).
+
+The input are two sets of coodinates:
+  1. taxel_pos - not acurate experimentaly acuired, 23 plates * 12 taxels, older wersion skin
+  2. triangle_centers_CAD - acurate, dimensions of holes for fixing plates to the robot,
+                            nearly exact center of the pad, 23 plates * 1 hole
+                            
+First we identifyed each thermal plate and its taxels in taxel_pos.
+We matched 1. set and 2.set.
+We translated coordinates of 1. set acording to position of more acurate 2. set (red).
+
+Box is represented by two oposite points (or line) one with minimal value of coordinates and one with maximal.
+We tightly fited a box aligned with axes of the forarm around each thermal pad. (upper part "min_max" , lower part "nin_nax")
+We seen that motly only 2 (once 3) boxes colide.
+We tightly fited coliding boxes into bigger boxes. ("m_m", "n_n") 
+
+This was the base of first prototype integrated in summer 2015.
+
+There wee to many gaps so we decided to cover whole forarm without making any gaps.
+
+                           
+            
