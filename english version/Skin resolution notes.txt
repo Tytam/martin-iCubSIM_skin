@@ -21,7 +21,20 @@ We tightly fited coliding boxes into bigger boxes. ("m_m", "n_n")
 
 This was the base of first prototype integrated in summer 2015.
 
-There wee to many gaps so we decided to cover whole forarm without making any gaps.
+There were to many gaps so we decided to cover whole forarm without making any gaps.
 
-                           
+We removed the gaps adding half of the gap to each box making this gap. So we enlarged all boxes so they tightly cover whole space between them.
+
+This was tested in simulator however uncovered areas still ocured.
+We cheked the implementation and corected errors.
+
+Our implementaition is based on incomplete and inacurate data so it can't be acurate. Some contacts apeared outside covered region. So we enlarged all boxes to the uncovered space.
+This can be done beacuse system firstly tests body part and only after forarm detection is triggered our emulation. Our forarm emulation can't interfere with other body part emulaion.
+
+Code: SKIN_LEFT_FORARM_v4.cpp
+
+Implements emulation in c++. You can see in the bottom of code that we skip two old taxels that were removed.
+
+This code is part of bigger function in simulator core 
+TODO find which function it is                           
             
